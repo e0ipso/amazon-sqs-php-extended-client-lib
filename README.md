@@ -10,6 +10,7 @@ The **Amazon SQS Extended Client Library for PHP** enables you to manage Amazon 
 * Delete the corresponding message object from an Amazon S3 bucket.
 
 You can install this library using composer doing:
+
 ```
 composer require e0ipso/amazon-sqs-php-extended-client-lib
 ```
