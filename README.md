@@ -17,7 +17,7 @@ composer require e0ipso/amazon-sqs-php-extended-client-lib
 ## Getting Started
 * **Sign up for AWS** -- Before you begin, you need an AWS account. For more information about creating an AWS account and retrieving your AWS credentials, see [AWS Account and Credentials](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/guide/credentials.html?highlight=credentials) in the AWS SDK for PHP Developer Guide.
 * **Sign up for Amazon SQS** -- Go to the Amazon [SQS console](https://console.aws.amazon.com/sqs/home?region=us-east-1) to sign up for the service.
-* **Minimum requirements** -- To use the sample application, you'll need PHP 5.6+ and [Composer](http://composer.org/). For more information about the requirements, see the [Getting Started](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/getting-started/) section of the Amazon SQS Developer Guide.
+* **Minimum requirements** -- To use the sample application, you'll need PHP 5.6+ and [Composer](https://getcomposer.org/). For more information about the requirements, see the [Getting Started](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/getting-started/) section of the Amazon SQS Developer Guide.
 * **Further information** - Read the [API documentation](http://aws.amazon.com/documentation/sqs/) and the [SQS & S3 recommendations](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/s3-messages.html).
 
 ## Acknowledgements

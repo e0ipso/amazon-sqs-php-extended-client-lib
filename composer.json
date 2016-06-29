@@ -4,6 +4,7 @@
   "keywords": ["aws", "sqs", "s3", "amazon"],
   "homepage": "https://github.com/e0ipso/amazon-sqs-php-extended-client-lib",
   "require": {
+    "php": ">=5.6",
     "aws/aws-sdk-php": "^3.18",
     "ramsey/uuid": "^3.4"
   },
