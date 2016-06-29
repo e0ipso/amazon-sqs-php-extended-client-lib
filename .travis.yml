@@ -24,4 +24,4 @@ before_script:
 
 script:
   # Run the PHPUnit tests.
-  - ./vendor/bin/phpunit -c ./phpunit.xml.dist .
+  - ./vendor/bin/phpunit -c phpunit.xml.dist
