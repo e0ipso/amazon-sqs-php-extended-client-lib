@@ -1,0 +1,27 @@
+language: php
+sudo: false
+
+php:
+  - 5.6
+  - 7
+  - hhvm
+
+cache:
+  directories:
+    - $HOME/.composer
+
+matrix:
+  allow_failures:
+    - php: hhvm
+  fast_finish: true
+
+before_script:
+  # Remove Xdebug as we don't need it and it causes
+  # PHP Fatal error:  Maximum function nesting level of '256' reached.
+  # We also don't care if that file exists or not on PHP 7.
+  - phpenv config-rm xdebug.ini || true
+  - travis_retry composer update --no-interaction
+
+script:
+  # Run the PHPUnit tests.
+  - ./vendor/bin/phpunit -c ./phpunit.xml.dist .
