@@ -3,6 +3,7 @@
 namespace AwsExtended;
 
 use Aws\S3\S3Client;
+use Aws\Sdk;
 use Aws\Sqs\SqsClient as AwsSqsClient;
 use Ramsey\Uuid\Uuid;
 
@@ -33,6 +34,13 @@ class SqsClient implements SqsClientInterface {
    * @var \AwsExtended\ConfigInterface
    */
   protected $config;
+
+  /**
+   * The client factory.
+   *
+   * @var \Aws\Sdk
+   */
+  protected $clientFactory;
 
   /**
    * SqsClient constructor.
@@ -104,7 +112,7 @@ class SqsClient implements SqsClientInterface {
    */
   public function getSqsClient() {
     if (!$this->sqsClient) {
-      $this->sqsClient = new AwsSqsClient($this->config->getConfig());
+      $this->sqsClient = $this->getClientFactory()->createSqs();;
     }
     return $this->sqsClient;
   }
@@ -114,7 +122,7 @@ class SqsClient implements SqsClientInterface {
    */
   public function getS3Client() {
     if (!$this->s3Client) {
-      $this->s3Client = new S3Client($this->config->getConfig());
+      $this->s3Client = $this->getClientFactory()->createS3();
     }
     return $this->s3Client;
   }
@@ -150,6 +158,20 @@ class SqsClient implements SqsClientInterface {
    */
   protected function generateUuid() {
     return Uuid::uuid4()->toString();
+  }
+
+  /**
+   * Initialize and return the SDK client factory.
+   *
+   * @return \Aws\Sdk
+   *   The client factory.
+   */
+  protected function getClientFactory() {
+    if ($this->clientFactory) {
+      return $this->clientFactory;
+    }
+    $this->clientFactory = new Sdk($this->config->getConfig());
+    return $this->clientFactory;
   }
 
 }

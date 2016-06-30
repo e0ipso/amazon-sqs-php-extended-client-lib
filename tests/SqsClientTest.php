@@ -26,7 +26,7 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase {
    */
   public function testSendMessage() {
     $client = $this->getClientMock(new Config(
-      ['region' => 'us-east-1', 'version' => '2012-11-05'],
+      [],
       'lorem',
       'ipsum',
       ConfigInterface::NEVER
@@ -38,7 +38,7 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase {
     ], $response);
 
     $client = $this->getClientMock(new Config(
-      ['region' => 'us-east-1', 'version' => '2012-11-05'],
+      [],
       'lorem',
       'ipsum',
       ConfigInterface::IF_NEEDED
@@ -56,7 +56,7 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase {
     ], $response);
 
     $client = $this->getClientMock(new Config(
-      ['region' => 'us-east-1', 'version' => '2012-11-05'],
+      [],
       'lorem',
       'ipsum',
       ConfigInterface::ALWAYS
@@ -104,7 +104,7 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase {
    */
   public function testIsTooBig($message, $is_too_big) {
     $client = new SqsClient(new Config(
-      ['region' => 'us-east-1', 'version' => 'latest'],
+      [],
       'lorem',
       'ipsum',
       ConfigInterface::NEVER
