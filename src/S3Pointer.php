@@ -55,7 +55,7 @@ class S3Pointer {
     $metadata = $this->s3Result ?
       array_map([$this->s3Result, 'get'], $info_keys) :
       [];
-    $pointer = ['Bucket' => $this->bucketName, 'Key' => $this->key];
+    $pointer = ['s3BucketName' => $this->bucketName, 's3Key' => $this->key];
     return json_encode([$metadata, $pointer]);
   }
 

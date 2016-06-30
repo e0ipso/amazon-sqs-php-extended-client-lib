@@ -33,14 +33,14 @@ class S3PointerTest extends \PHPUnit_Framework_TestCase {
    */
   public function toStringProvider() {
     return [
-      ['lorem', 'ipsum', NULL, '[[],{"Bucket":"lorem","Key":"ipsum"}]'],
-      ['lorem', 'ipsum', new Result([]), '[[null,null],{"Bucket":"lorem","Key":"ipsum"}]'],
-      [NULL, NULL, NULL, '[[],{"Bucket":null,"Key":null}]'],
-      ['lorem', TRUE, NULL, '[[],{"Bucket":"lorem","Key":true}]'],
+      ['lorem', 'ipsum', NULL, '[[],{"s3BucketName":"lorem","s3Key":"ipsum"}]'],
+      ['lorem', 'ipsum', new Result([]), '[[null,null],{"s3BucketName":"lorem","s3Key":"ipsum"}]'],
+      [NULL, NULL, NULL, '[[],{"s3BucketName":null,"s3Key":null}]'],
+      ['lorem', TRUE, NULL, '[[],{"s3BucketName":"lorem","s3Key":true}]'],
       ['lorem', 'ipsum', new Result([
         '@metadata' => 'fake_metadata',
         'ObjectUrl' => 'fake_object_url'
-      ]), '[["fake_metadata","fake_object_url"],{"Bucket":"lorem","Key":"ipsum"}]'],
+      ]), '[["fake_metadata","fake_object_url"],{"s3BucketName":"lorem","s3Key":"ipsum"}]'],
     ];
   }
 
