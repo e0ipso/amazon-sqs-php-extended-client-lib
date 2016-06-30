@@ -112,7 +112,7 @@ class SqsClient implements SqsClientInterface {
    */
   public function getSqsClient() {
     if (!$this->sqsClient) {
-      $this->sqsClient = $this->getClientFactory()->createSqs();;
+      $this->sqsClient = $this->getClientFactory()->createSqs();
     }
     return $this->sqsClient;
   }
