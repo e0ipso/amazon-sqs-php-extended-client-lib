@@ -56,7 +56,7 @@ class S3Pointer {
       array_map([$this->s3Result, 'get'], $info_keys) :
       [];
     $pointer = ['Bucket' => $this->bucketName, 'Key' => $this->key];
-    return \GuzzleHttp\json_encode([$metadata, $pointer]);
+    return json_encode([$metadata, $pointer]);
   }
 
 }

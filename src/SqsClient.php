@@ -72,14 +72,14 @@ class SqsClient implements SqsClientInterface {
     if (!$use_sqs) {
       // First send the object to S3. The modify the message to store an S3
       // pointer to the message contents.
-      $uuid = $this->generateUuid();
+      $key = $this->generateUuid() . '.json';
       $receipt = $this->getS3Client()->upload(
         $this->config->getBucketName(),
-        $uuid,
+        $key,
         $message
       );
       // Swap the message for a pointer to the actual message in S3.
-      $message = (string) (new S3Pointer($this->config->getBucketName(), $uuid, $receipt));
+      $message = (string) (new S3Pointer($this->config->getBucketName(), $key, $receipt));
     }
     $queue_url = $queue_url ?: $this->config->getSqsUrl();
     return $this->getSqsClient()->sendMessage([
