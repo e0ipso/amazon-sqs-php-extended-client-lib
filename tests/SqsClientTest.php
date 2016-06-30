@@ -52,7 +52,7 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase {
     $response = $client->sendMessage(json_encode(range(1, 257 * 1024)), 'bar');
     $this->assertEquals([
       'QueueUrl' => 'bar',
-      'MessageBody' => '[[{"Lorem":"lorem","Ipsum":"1234-fake-uuid"},"fake_object_url"],{"Bucket":"lorem","Key":"1234-fake-uuid"}]',
+      'MessageBody' => '[[{"Lorem":"lorem","Ipsum":"1234-fake-uuid.json"},"fake_object_url"],{"Bucket":"lorem","Key":"1234-fake-uuid.json"}]',
     ], $response);
 
     $client = $this->getClientMock(new Config(
@@ -64,7 +64,7 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase {
     $response = $client->sendMessage('foo', 'bar');
     $this->assertEquals([
       'QueueUrl' => 'bar',
-      'MessageBody' => '[[{"Lorem":"lorem","Ipsum":"1234-fake-uuid"},"fake_object_url"],{"Bucket":"lorem","Key":"1234-fake-uuid"}]',
+      'MessageBody' => '[[{"Lorem":"lorem","Ipsum":"1234-fake-uuid.json"},"fake_object_url"],{"Bucket":"lorem","Key":"1234-fake-uuid.json"}]',
     ], $response);
   }
 
