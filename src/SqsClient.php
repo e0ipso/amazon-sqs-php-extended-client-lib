@@ -100,6 +100,27 @@ class SqsClient implements SqsClientInterface {
   /**
    * {@inheritdoc}
    */
+  public function receiveMessage($queue_url = NULL) {
+    $queue_url = $queue_url ?: $this->config->getSqsUrl();
+    // Get the message from the SQS queue.
+    $result = $this->getSqsClient()->receiveMessage([
+      'QueueUrl' => $queue_url
+    ]);
+    // Detect if this is an S3 pointer message.
+    if (S3Pointer::isS3Pointer($result)) {
+      $args = $result->get(1);
+      // Get the S3 document with the message and return it.
+      return $this->getS3Client()->getObject([
+        'Bucket' => $args['s3BucketName'],
+        'Key'    => $args['s3Key']
+      ]);
+    }
+    return $result;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isTooBig($message, $max_size = NULL) {
     // The number of bytes as the number of characters. Notice that we are not
     // using mb_strlen() on purpose.

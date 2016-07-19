@@ -59,4 +59,21 @@ class S3Pointer {
     return json_encode([$metadata, $pointer]);
   }
 
+  /**
+   * Checks if a result response is an S3 pointer.
+   *
+   * @param \Aws\ResultInterface $result
+   *   The result from the SQS request.
+   *
+   * @return bool
+   *   TRUE if the result corresponds to an S3 pointer. FALSE otherwise.
+   */
+  public static function isS3Pointer(ResultInterface $result) {
+    // Check that the second element of the 2 position array has the expected
+    // keys (and no more).
+    return $result->count() == 2 &&
+    is_array($result->get(1)) &&
+    empty(array_diff($result->get(1), ['s3BucketName', 's3Key']));
+  }
+
 }

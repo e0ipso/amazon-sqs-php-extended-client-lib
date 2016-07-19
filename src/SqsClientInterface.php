@@ -30,6 +30,17 @@ interface SqsClientInterface {
   public function sendMessage($message, $queue_url = NULL);
 
   /**
+   * Gets a message from the queue.
+   *
+   * @param string $queue_url
+   *   The SQS queue. Defaults to the one configured in the client.
+   *
+   * @return \Aws\ResultInterface
+   *   The message
+   */
+  public function receiveMessage($queue_url = NULL);
+
+  /**
    * Checks if a message is too big to be sent to SQS.
    *
    * @param $message
