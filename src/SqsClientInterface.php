@@ -41,6 +41,21 @@ interface SqsClientInterface {
   public function receiveMessage($queue_url = NULL);
 
   /**
+   * Deletes an item from the queue, and from S3 if it applies.
+   *
+   * @param string $queue_url
+   *   The URL for the SQS queue. Set to NULL to use the configured queue URL.
+   * @param string $receipt_handle
+   *   The receipt handle of the message. Every time you recieve a message the
+   *   receipt handle is different, you need to use the most recent receipt
+   *   handle to successfully delete the message.
+   *
+   * @return \Aws\ResultInterface
+   *   The response from AWS.
+   */
+  public function deleteMessage($queue_url, $receipt_handle);
+
+  /**
    * Checks if a message is too big to be sent to SQS.
    *
    * @param $message

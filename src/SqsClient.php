@@ -121,6 +121,19 @@ class SqsClient implements SqsClientInterface {
   /**
    * {@inheritdoc}
    */
+  public function deleteMessage($queue_url, $receipt_handle) {
+    $queue_url = $queue_url ?: $this->config->getSqsUrl();
+    $result = $this->getSqsClient()->deleteMessage([
+      'QueueUrl' => $queue_url,
+      'ReceiptHandle' => $receipt_handle,
+    ]);
+    // TODO: Find the object in the bucket and delete it.
+    return $result;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isTooBig($message, $max_size = NULL) {
     // The number of bytes as the number of characters. Notice that we are not
     // using mb_strlen() on purpose.
@@ -168,7 +181,7 @@ class SqsClient implements SqsClientInterface {
    */
   function __call($name, $arguments) {
     // Send any unknown method calls to the SQS client.
-    return call_user_func_array([$this->getS3Client(), $name], $arguments);
+    return call_user_func_array([$this->getSqsClient(), $name], $arguments);
   }
 
   /**
